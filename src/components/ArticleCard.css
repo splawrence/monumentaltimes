@@ -1,0 +1,243 @@
+/* Article Card Styles */
+.article-card {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  border-bottom: 1px solid #e2e2e2;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+  transition: transform 0.2s ease;
+}
+
+.article-card:hover {
+  transform: translateY(-2px);
+}
+
+.article-card:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+/* Image */
+.article-card__image {
+  width: 100%;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.article-card__image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.article-card:hover .article-card__image img {
+  transform: scale(1.02);
+}
+
+/* Content */
+.article-card__content {
+  flex: 1;
+}
+
+/* Meta Top */
+.article-card__meta-top {
+  margin-bottom: 8px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.breaking-badge {
+  background: #d0021b;
+  color: white;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 8px;
+  border-radius: 2px;
+  letter-spacing: 0.5px;
+  font-family: 'Arial', sans-serif;
+}
+
+.category-badge {
+  color: #326891;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  font-family: 'Arial', sans-serif;
+}
+
+/* Title */
+.article-card__title {
+  margin: 0 0 8px 0;
+  line-height: 1.4;
+}
+
+.article-card__title a {
+  color: #121212;
+  text-decoration: none;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.article-card__title a:hover {
+  color: #666;
+}
+
+/* Summary */
+.article-card__summary {
+  color: #666;
+  line-height: 1.5;
+  margin: 0 0 12px 0;
+  font-family: 'Georgia', 'Times New Roman', serif;
+}
+
+/* Meta */
+.article-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  align-items: center;
+  font-size: 12px;
+  color: #999;
+  font-family: 'Arial', sans-serif;
+}
+
+.article-card__author {
+  font-weight: 500;
+  color: #666;
+}
+
+.article-card__timestamp,
+.article-card__read-time {
+  color: #999;
+}
+
+/* Size Variants */
+.article-card--small {
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.article-card--small .article-card__title {
+  font-size: 16px;
+}
+
+.article-card--small .article-card__image {
+  margin-bottom: 8px;
+}
+
+.article-card--small .article-card__image img {
+  height: 120px;
+}
+
+.article-card--medium {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+}
+
+.article-card--medium .article-card__title {
+  font-size: 20px;
+}
+
+.article-card--medium .article-card__image img {
+  height: 200px;
+}
+
+.article-card--large {
+  padding-bottom: 24px;
+  margin-bottom: 24px;
+}
+
+.article-card--large .article-card__title {
+  font-size: 28px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+}
+
+.article-card--large .article-card__summary {
+  font-size: 18px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+
+.article-card--large .article-card__image img {
+  height: 300px;
+}
+
+/* Grid Layout Styles */
+.article-card--grid {
+  border: none;
+  border-right: 1px solid #e2e2e2;
+  padding-right: 20px;
+  margin-right: 20px;
+}
+
+.article-card--grid:last-child {
+  border-right: none;
+  padding-right: 0;
+  margin-right: 0;
+}
+
+/* Horizontal Layout */
+.article-card--horizontal {
+  flex-direction: row;
+  gap: 16px;
+}
+
+.article-card--horizontal .article-card__image {
+  width: 200px;
+  min-width: 200px;
+  margin-bottom: 0;
+}
+
+.article-card--horizontal .article-card__image img {
+  height: 120px;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .article-card {
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  .article-card--large .article-card__title {
+    font-size: 24px;
+  }
+
+  .article-card--medium .article-card__title {
+    font-size: 18px;
+  }
+
+  .article-card--small .article-card__title {
+    font-size: 16px;
+  }
+
+  .article-card--horizontal {
+    flex-direction: column;
+  }
+
+  .article-card--horizontal .article-card__image {
+    width: 100%;
+  }
+
+  .article-card--grid {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+    border-bottom: 1px solid #e2e2e2;
+    padding-bottom: 16px;
+    margin-bottom: 16px;
+  }
+
+  .article-card__meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+}

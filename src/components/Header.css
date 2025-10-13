@@ -1,0 +1,267 @@
+/* Google Fonts Import - EB Garamond (Gutenberg Style) */
+@import url('https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+/* Header Styles */
+.header {
+  font-family: 'Georgia', 'Times New Roman', serif;
+  border-bottom: 1px solid #e2e2e2;
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+.header-container, .nav-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header Top */
+.header-top {
+  background: #f7f7f7;
+  padding: 8px 0;
+  border-bottom: 1px solid #e2e2e2;
+}
+
+.header-top .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header-date {
+  font-size: 11px;
+  font-weight: 500;
+  color: #333;
+  font-family: 'Arial', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.header-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.subscribe-btn, .login-btn {
+  font-size: 11px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 6px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  font-family: 'Arial', sans-serif;
+}
+
+.subscribe-btn {
+  background: #326891;
+  color: white;
+  border: 1px solid #326891;
+}
+
+.subscribe-btn:hover {
+  background: #285a7a;
+}
+
+.login-btn {
+  background: transparent;
+  color: #333;
+  border: 1px solid #ccc;
+}
+
+.login-btn:hover {
+  background: #f0f0f0;
+}
+
+/* Header Main */
+.header-main {
+  padding: 15px 0;
+}
+
+.header-main .header-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Hamburger Menu */
+.hamburger-menu {
+  display: none;
+  flex-direction: column;
+  gap: 4px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  border-radius: 3px;
+}
+
+.hamburger-menu:hover {
+  background: #f0f0f0;
+}
+
+.hamburger-menu span {
+  width: 20px;
+  height: 2px;
+  background: #333;
+  transition: 0.3s;
+}
+
+/* Logo */
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo-image {
+  height: 53px;
+  width: auto;
+  max-width: 330px;
+  object-fit: contain;
+}
+
+/* Search */
+.search-container {
+  display: flex;
+  align-items: center;
+}
+
+.search-btn {
+  background: none;
+  border: 1px solid #ccc;
+  padding: 8px 12px;
+  border-radius: 3px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.2s;
+}
+
+.search-btn:hover {
+  background: #f0f0f0;
+}
+
+.search-btn svg {
+  fill: #333;
+}
+
+/* Main Navigation */
+.main-nav {
+  background: #fff;
+  border-top: 1px solid #e2e2e2;
+  padding: 12px 0;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-link {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  text-decoration: none;
+  padding: 8px 0;
+  transition: color 0.2s;
+  font-family: 'Arial', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-link:hover {
+  color: #326891;
+}
+
+.nav-link--button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  padding: 8px 0;
+  transition: color 0.2s;
+  font-family: 'Arial', sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.nav-link--button:hover {
+  color: #326891;
+}
+
+/* Mobile Styles */
+@media (max-width: 768px) {
+  .hamburger-menu {
+    display: flex;
+  }
+
+  .logo-image {
+    height: 40px;
+    max-width: 275px;
+  }
+
+  .header-date {
+    font-size: 10px;
+  }
+
+  .header-actions {
+    gap: 10px;
+  }
+
+  .subscribe-btn, .login-btn {
+    padding: 4px 8px;
+    font-size: 10px;
+  }
+
+  .main-nav {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border-bottom: 1px solid #e2e2e2;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+  .nav-open {
+    display: block;
+  }
+
+  .nav-links {
+    flex-direction: column;
+    gap: 0;
+    padding: 0;
+  }
+
+  .nav-link {
+    width: 100%;
+    padding: 15px 20px;
+    border-bottom: 1px solid #f0f0f0;
+    text-align: left;
+  }
+
+  .nav-link:last-child {
+    border-bottom: none;
+  }
+}
+
+/* Tablet Styles */
+@media (max-width: 1024px) {
+  .nav-links {
+    gap: 20px;
+  }
+
+  .nav-link {
+    font-size: 13px;
+  }
+}
