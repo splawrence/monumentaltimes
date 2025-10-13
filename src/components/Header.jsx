@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import './Header.css';
+import mtLogo from '../assets/mt-logo.png';
 
 const Header = ({ onAboutClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,7 +43,7 @@ const Header = ({ onAboutClick }) => {
           </button>
           
           <div className="logo">
-            <img src="src/assets/mt-logo.png" alt="Monumental Times" className="logo-image" />
+            <img src={mtLogo} alt="Monumental Times" className="logo-image" />
           </div>
           
           <div className="search-container">
