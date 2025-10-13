@@ -42,7 +42,7 @@ const Header = ({ onAboutClick }) => {
           </button>
           
           <div className="logo">
-            <img src="/images/mt-logo.png" alt="Monumental Times" className="logo-image" />
+            <img src="src/assets/mt-logo.png" alt="Monumental Times" className="logo-image" />
           </div>
           
           <div className="search-container">
