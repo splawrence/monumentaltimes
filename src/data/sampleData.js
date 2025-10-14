@@ -16,7 +16,7 @@ export const sampleArticles = [
     author: "Hope Hanson",
     timestamp: new Date('2025-10-13T08:00:00'), // October 13th, 2025
     image: spiritualImg,
-    category: "Editorial",
+    category: "Opinion/Testimony",
     readTime: 5,
     isBreaking: true,
     content: `Throughout the Bible, God has always emphasized the importance of remembering. He commanded the Israelites to set up monuments of stone to mark significant moments in their history (Joshua 4:1-24). He reminded them time and time again to write scripture on our hearts (Jeremiah 31:33). Much of the Bible itself is full of historical accounts reminding us of God's work throughout the ages.
@@ -32,7 +32,7 @@ This newspaper began with that same vision in mind: remembering what God has don
     author: "Andrew Rocke",
     timestamp: new Date('2025-10-13T06:00:00'),
     image: welcomeImg, // Using welcome image as placeholder
-    category: "Op-Ed",
+    category: "Human interest",
     readTime: 6,
     content: `So, I'm the kind of person that when I watch a movie or hear about something that interests me, I'll often do a little online research to learn more about the topic. Recently, my wife and I watched the movie Rascal together. It is based on the book with a similar name.
 
@@ -49,7 +49,7 @@ So, history repeated itself and the Japanese did what Sterling had to do with hi
     author: "Joanna Rocke",
     timestamp: new Date('2025-10-12T14:30:00'),
     image: spiritualImg,
-    category: "Spiritual",
+    category: "Prayer",
     readTime: 4,
     content: `Prayer is by far one of the most crucial aspects of the Christian life. How are we to know God, be transformed to be like Christ, or battle for Him, if we never talk to Him? Indeed, half the battle is won when we put our lives into His hands instead of holding on to it ourselves. The lack of prayer reflects a false trust in ourselves. What a foolish choice!
 
@@ -64,7 +64,7 @@ Prayer requires us to come humbly before God. Psalm 139:23-24 is a great place t
     author: "Hope Hanson",
     timestamp: new Date('2025-10-11T10:15:00'),
     image: girlSeaImg,
-    category: "Story",
+    category: "Stories",
     readTime: 3,
     content: `She ran along the shore, a squeal of delight escaping her lips at every shell she came upon. One chubby fist held the edge of her blue skirt in a bundle, creating a little pouch to hold her treasures. Silver shells, white shells, blue shells, perfect shells, soft shells, big shells, small shells. Broken shells too. All slipped into the makeshift bag.
 
@@ -79,7 +79,7 @@ She wishes for a shell to find along the golden sand, a treasure with worth beyo
     author: "Hope Hanson",
     timestamp: new Date('2025-10-10T16:45:00'),
     image: shadowImg,
-    category: "Book Review",
+    category: "Book review",
     readTime: 7,
     content: `I have grown up reading the stories and adventures of the 5 missionaries who travelled to Ecuador in the 1950s and risked all to carry the gospel to the unreached Huaorani (formerly Auca) people. Jim Elliot and his four friends Nate Saint, Ed McCully, Pete Fleming, and Roger Youderian were all killed by the spear on January 8, 1956, and this tragedy paved the way for the people in the remote jungles of Ecuador to hear the gospel and has inspired countless others to pursue mission work in various capacities since then.
 
@@ -136,7 +136,7 @@ And everlasting peace`
     author: "Hope Hanson",
     timestamp: new Date('2025-10-08T15:30:00'),
     image: shadowImg, // Using book image
-    category: "Challenge",
+    category: "How to (sewing, art, etc.)",
     readTime: 3,
     content: `Do you ever wonder how many books you've read in your lifetime? Or perhaps you can't remember the name of that really good book you finished last year and you can't find it again. Whatever the case is, there is an easy solution!
 
@@ -181,7 +181,7 @@ Did you know the English word "run" has 645 definitions? I'd like the run down o
     author: "Editorial Staff",
     timestamp: new Date('2025-10-05T13:00:00'),
     image: spiritualImg, // Using spiritual image
-    category: "Inspiration",
+    category: "Quotes",
     readTime: 2,
     content: `"God always gives His best to those who leave the choice with Him." - Jim Elliot
 

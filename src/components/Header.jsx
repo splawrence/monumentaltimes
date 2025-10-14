@@ -60,14 +60,15 @@ const Header = ({ onAboutClick }) => {
         <div className="nav-container">
           <div className="nav-links">
             <a href="#home" className="nav-link">Home</a>
-            <a href="#politics" className="nav-link">Politics</a>
-            <a href="#world" className="nav-link">World</a>
-            <a href="#business" className="nav-link">Business</a>
-            <a href="#technology" className="nav-link">Technology</a>
-            <a href="#opinion" className="nav-link">Opinion</a>
-            <a href="#sports" className="nav-link">Sports</a>
-            <a href="#arts" className="nav-link">Arts</a>
-            <a href="#lifestyle" className="nav-link">Lifestyle</a>
+            <a href="#spiritual" className="nav-link">Spiritual/Bible</a>
+            <a href="#opinion" className="nav-link">Opinion/Testimony</a>
+            <a href="#news" className="nav-link">News Flash</a>
+            <a href="#biography" className="nav-link">Biography/History</a>
+            <a href="#recipes" className="nav-link">Recipes</a>
+            <a href="#poetry" className="nav-link">Poetry & Art</a>
+            <a href="#stories" className="nav-link">Stories & Comics</a>
+            <a href="#tech" className="nav-link">Tech & Sports</a>
+            <a href="#reviews" className="nav-link">Reviews</a>
             <button 
               onClick={onAboutClick} 
               className="nav-link nav-link--button"
