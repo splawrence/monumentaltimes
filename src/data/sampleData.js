@@ -4,8 +4,6 @@ import girlSeaImg from '../assets/Girl by the Seaside.png';
 import shadowImg from '../assets/Sh adow of th e Almigh ty.png';
 import spiritualImg from '../assets/Spiritual Article.png';
 import recipe1Img from '../assets/recipe1.png';
-import recipe2Img from '../assets/recipe2.png';
-import recipe3Img from '../assets/recipe3.png';
 
 // Monumental Times - October 18th, 2025 Issue
 export const sampleArticles = [

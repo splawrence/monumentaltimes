@@ -6,14 +6,25 @@ import ArticleGrid from './components/ArticleGrid';
 import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
 import AboutUs from './components/AboutUs';
-import { featuredArticle, secondaryArticles, sidebarArticles } from './data/sampleData';
+import SearchResults from './components/SearchResults';
+import { featuredArticle, secondaryArticles, sidebarArticles, sampleArticles } from './data/sampleData';
 import './App.css';
 
 function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [showAbout, setShowAbout] = useState(false);
+  const [showSearchResults, setShowSearchResults] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
+  const [searchResults, setSearchResults] = useState([]);
 
   const handleArticleClick = (article) => {
+    setSelectedArticle(article);
+  };
+
+  const handleSearchResultClick = (article) => {
+    setShowSearchResults(false);
+    setSearchQuery('');
+    setSearchResults([]);
     setSelectedArticle(article);
   };
 
@@ -29,9 +40,29 @@ function App() {
     setShowAbout(false);
   };
 
+    const handleSearch = (query) => {
+    const results = sampleArticles.filter(article => 
+      article.title.toLowerCase().includes(query.toLowerCase()) ||
+      article.summary.toLowerCase().includes(query.toLowerCase()) ||
+      article.category.toLowerCase().includes(query.toLowerCase()) ||
+      article.author.toLowerCase().includes(query.toLowerCase()) ||
+      article.content?.toLowerCase().includes(query.toLowerCase())
+    );
+    
+    setSearchQuery(query);
+    setSearchResults(results);
+    setShowSearchResults(true);
+  };
+
+  const handleCloseSearch = () => {
+    setShowSearchResults(false);
+    setSearchQuery('');
+    setSearchResults([]);
+  };
+
   return (
     <div className="app">
-      <Header onAboutClick={handleAboutClick} />
+      <Header onAboutClick={handleAboutClick} onSearch={handleSearch} />
       
       <main className="main-content">
         {/* Featured Article */}
@@ -86,6 +117,16 @@ function App() {
       {/* About Us Modal */}
       {showAbout && (
         <AboutUs onClose={handleCloseAbout} />
+      )}
+
+      {/* Search Results Modal */}
+      {showSearchResults && (
+        <SearchResults 
+          searchQuery={searchQuery}
+          searchResults={searchResults}
+          onArticleClick={handleSearchResultClick}
+          onClose={handleCloseSearch}
+        />
       )}
 
       {/* Footer */}

@@ -3,11 +3,24 @@ import PropTypes from 'prop-types';
 import './Header.css';
 import mtLogo from '../assets/mt-logo.png';
 
-const Header = ({ onAboutClick }) => {
+const Header = ({ onAboutClick, onSearch }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
+  };
+
+  const handleSearchSubmit = (e) => {
+    e.preventDefault();
+    if (searchQuery.trim() && onSearch) {
+      onSearch(searchQuery.trim());
+      setSearchQuery('');
+    }
+  };
+
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value);
   };
 
   const currentDate = new Date().toLocaleDateString('en-US', {
@@ -47,11 +60,23 @@ const Header = ({ onAboutClick }) => {
           </div>
           
           <div className="search-container">
-            <button className="search-btn">
-              <svg width="16" height="16" viewBox="0 0 16 16">
-                <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
-              </svg>
-            </button>
+            <form onSubmit={handleSearchSubmit} className="search-form">
+              <div className="search-input-container search-open">
+                <input
+                  type="text"
+                  placeholder="Search articles..."
+                  value={searchQuery}
+                  onChange={handleSearchChange}
+                  className="search-input"
+                  aria-label="Search articles"
+                />
+                <button type="submit" className="search-btn">
+                  <svg width="16" height="16" viewBox="0 0 16 16">
+                    <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                  </svg>
+                </button>
+              </div>
+            </form>
           </div>
         </div>
       </div>
@@ -83,7 +108,8 @@ const Header = ({ onAboutClick }) => {
 };
 
 Header.propTypes = {
-  onAboutClick: PropTypes.func
+  onAboutClick: PropTypes.func,
+  onSearch: PropTypes.func
 };
 
 export default Header;
