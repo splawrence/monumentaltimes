@@ -6,6 +6,7 @@ import ArticleGrid from './components/ArticleGrid';
 import Sidebar from './components/Sidebar';
 import ArticleView from './components/ArticleView';
 import AboutUs from './components/AboutUs';
+import Policies from './components/Policies';
 import SearchResults from './components/SearchResults';
 import { featuredArticle, secondaryArticles, sidebarArticles, sampleArticles } from './data/sampleData';
 import './App.css';
@@ -13,6 +14,7 @@ import './App.css';
 function App() {
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [showAbout, setShowAbout] = useState(false);
+  const [showPolicies, setShowPolicies] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
@@ -40,6 +42,14 @@ function App() {
     setShowAbout(false);
   };
 
+  const handlePoliciesClick = () => {
+    setShowPolicies(true);
+  };
+
+  const handleClosePolicies = () => {
+    setShowPolicies(false);
+  };
+
     const handleSearch = (query) => {
     const results = sampleArticles.filter(article => 
       article.title.toLowerCase().includes(query.toLowerCase()) ||
@@ -62,7 +72,7 @@ function App() {
 
   return (
     <div className="app">
-      <Header onAboutClick={handleAboutClick} onSearch={handleSearch} />
+      <Header onAboutClick={handleAboutClick} onPoliciesClick={handlePoliciesClick} onSearch={handleSearch} />
       
       <main className="main-content">
         {/* Featured Article */}
@@ -117,6 +127,11 @@ function App() {
       {/* About Us Modal */}
       {showAbout && (
         <AboutUs onClose={handleCloseAbout} />
+      )}
+
+      {/* Policies Modal */}
+      {showPolicies && (
+        <Policies onClose={handleClosePolicies} />
       )}
 
       {/* Search Results Modal */}

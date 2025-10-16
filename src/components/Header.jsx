@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Header.css';
 import mtLogo from '../assets/mt-logo.png';
 
-const Header = ({ onAboutClick, onSearch }) => {
+const Header = ({ onAboutClick, onPoliciesClick, onSearch }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
 
@@ -100,6 +100,12 @@ const Header = ({ onAboutClick, onSearch }) => {
             >
               About Us
             </button>
+            <button 
+              onClick={onPoliciesClick} 
+              className="nav-link nav-link--button"
+            >
+              Policies
+            </button>
           </div>
         </div>
       </nav>
@@ -109,6 +115,7 @@ const Header = ({ onAboutClick, onSearch }) => {
 
 Header.propTypes = {
   onAboutClick: PropTypes.func,
+  onPoliciesClick: PropTypes.func,
   onSearch: PropTypes.func
 };
 
