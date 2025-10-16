@@ -135,12 +135,40 @@
   align-items: center;
   grid-column: 3;
   justify-self: end;
+  gap: 8px;
+}
+
+.search-toggle-btn {
+  display: none;
+  background: none;
+  border: none;
+  padding: 8px;
+  cursor: pointer;
+  border-radius: 3px;
+  transition: background-color 0.2s;
+}
+
+.search-toggle-btn:hover {
+  background: #f0f0f0;
+}
+
+.search-toggle-btn svg {
+  fill: #333;
 }
 
 .search-form {
   display: flex;
   align-items: center;
   position: relative;
+}
+
+/* Desktop search - always visible */
+@media (min-width: 769px) {
+  .search-input-container {
+    width: 250px !important;
+    opacity: 1 !important;
+    pointer-events: all !important;
+  }
 }
 
 .search-input-container {
@@ -259,12 +287,58 @@
     max-width: 275px;
   }
 
-  .search-input-container.search-open {
-    width: 180px;
+  .search-toggle-btn {
+    display: flex;
+  }
+
+  .search-form {
+    position: absolute;
+    right: 20px;
+    top: 100%;
+    z-index: 1001;
   }
 
   .search-input-container {
-    width: 180px;
+    width: 0;
+    opacity: 0;
+    pointer-events: none;
+    position: relative;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 3px;
+    margin-top: 8px;
+  }
+
+  .search-input-container.search-open {
+    width: 250px;
+    opacity: 1;
+    pointer-events: all;
+  }
+
+  .nav-link--button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 500;
+    color: #333;
+    padding: 10px 20px;
+    transition: color 0.2s;
+    font-family: 'Arial', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    white-space: nowrap;
+    width: 100%;
+    text-align: left;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .nav-link--button:hover {
+    color: #326891;
+  }
+
+  .nav-link--button:last-child {
+    border-bottom: none;
   }
 
   .header-date {
@@ -289,6 +363,7 @@
     background: white;
     border-bottom: 1px solid #e2e2e2;
     box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 0;
   }
 
   .nav-open {
@@ -298,14 +373,15 @@
   .nav-links {
     flex-direction: column;
     gap: 0;
-    padding: 0;
+    padding: 8px 0;
   }
 
   .nav-link {
     width: 100%;
-    padding: 15px 20px;
+    padding: 10px 20px;
     border-bottom: 1px solid #f0f0f0;
     text-align: left;
+    font-size: 13px;
   }
 
   .nav-link:last-child {
