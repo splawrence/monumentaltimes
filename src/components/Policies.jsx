@@ -12,16 +12,20 @@ const Policies = ({ onClose }) => {
         
         <div className="policies-content">
           <header className="policies-header">
-            <h1>Editorial Policies & Submission Guidelines</h1>
+            <h1>Policies & Submission Guidelines</h1>
             <p className="policies-subtitle">Monumental Times Editorial Standards and Article Submission Criteria</p>
           </header>
 
           <div className="policies-sections">
             <section className="policy-section">
-              <h2>Editorial Policies</h2>
+              <h2>Policies</h2>
               <div className="policy-text">
-                <h3>Accuracy and Fact-Checking</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <h3>General Content</h3>
+                <p>There will be no coarse language, excessive violence, or inappropriate situations portrayed in any writing for the content of this newspaper in order to be completely Above Reproach and bring glory to God in our writing by honoring His ways and protecting the innocence of our readers. Although these things are a very real part of our world, including them in our writing is unnecessary. Art should reflect reality, yes, but also help to shape our lives: therefore we will strive to influence towards Christlike-ness rather than worldliness.
+Matthew 5:8 “Blessed are the pure in heart, For they shall see God.”
+2 Timothy 2:22 “Flee also youthful lusts; but pursue righteousness, faith, love, peace with those who call on the Lord out of a pure heart.”
+Hebrews 10:23-24 “Let us hold fast the confession of our hope without wavering, for he who promised is faithful. And let us consider how to stir up one another to love and good works, not neglecting to meet together, as is the habit of some, but encouraging one another, and all the more as you see the Day drawing near.”
+</p>
                 
                 <h3>Independence and Objectivity</h3>
                 <p>Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.</p>
