@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Header.css';
 import mtLogo from '../assets/mt-logo.png';
 
-const Header = ({ onAboutClick, onPoliciesClick, onSearch }) => {
+const Header = ({ onSearch }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(window.innerWidth > 768);
@@ -23,15 +23,6 @@ const Header = ({ onAboutClick, onPoliciesClick, onSearch }) => {
     setIsMenuOpen(false);
   };
 
-  const handleAboutClick = () => {
-    onAboutClick();
-    handleMenuItemClick();
-  };
-
-  const handlePoliciesClick = () => {
-    onPoliciesClick();
-    handleMenuItemClick();
-  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -125,10 +116,9 @@ const Header = ({ onAboutClick, onPoliciesClick, onSearch }) => {
         </div>
       </div>
       
-      <nav className={`main-nav ${isMenuOpen ? 'nav-open' : ''}`}>
+      <nav className={`main-nav ${isMenuOpen ? 'nav-open' : ''}`} aria-label="Main Navigation">
         <div className="nav-container">
-          <div className="nav-links">
-            <a href="#home" className="nav-link" onClick={handleMenuItemClick}>Home</a>
+          <div className={`nav-links${isMenuOpen ? ' nav-links--open' : ''}`}>
             <a href="#spiritual" className="nav-link" onClick={handleMenuItemClick}>Spiritual/Bible</a>
             <a href="#opinion" className="nav-link" onClick={handleMenuItemClick}>Opinion/Testimony</a>
             <a href="#news" className="nav-link" onClick={handleMenuItemClick}>News Flash</a>
@@ -138,18 +128,7 @@ const Header = ({ onAboutClick, onPoliciesClick, onSearch }) => {
             <a href="#stories" className="nav-link" onClick={handleMenuItemClick}>Stories & Comics</a>
             <a href="#tech" className="nav-link" onClick={handleMenuItemClick}>Tech & Sports</a>
             <a href="#reviews" className="nav-link" onClick={handleMenuItemClick}>Reviews</a>
-            <button 
-              onClick={handleAboutClick} 
-              className="nav-link nav-link--button"
-            >
-              About Us
-            </button>
-            <button 
-              onClick={handlePoliciesClick} 
-              className="nav-link nav-link--button"
-            >
-              Policies
-            </button>
+            {/* About Us and Policies links removed for footer relocation */}
           </div>
         </div>
       </nav>
@@ -158,8 +137,6 @@ const Header = ({ onAboutClick, onPoliciesClick, onSearch }) => {
 };
 
 Header.propTypes = {
-  onAboutClick: PropTypes.func,
-  onPoliciesClick: PropTypes.func,
   onSearch: PropTypes.func
 };
 
