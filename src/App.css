@@ -1,3 +1,19 @@
+/* Footer link button style for consistent white text */
+.footer-link {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 14px;
+  font-family: inherit;
+  cursor: pointer;
+  padding: 0;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.footer-link:hover {
+  color: #e0e0e0;
+}
 /* Global Styles - NY Times Inspired */
 
 /* CSS Reset and Base */
