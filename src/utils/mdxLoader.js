@@ -1,82 +1,8 @@
 /**
- * Loads MDX articles from static files for GitHub Pages deployment
- * This works by:
- * 1. Loading a manifest file that lists all article paths
- * 2. Fetching each MDX file
- * 3. Parsing frontmatter and content
+ * Loads MDX articles from pre-generated JSON for GitHub Pages deployment
+ * Articles are converted to JSON at build time to avoid GitHub Pages
+ * stripping frontmatter from .mdx files
  */
-
-/**
- * Parse MDX frontmatter and content
- */
-function parseMDX(content) {
-  // Normalize line endings to \n
-  const normalizedContent = content.replace(/\r\n/g, '\n');
-  
-  const frontmatterRegex = /^---\s*\n([\s\S]*?)\n---\s*\n([\s\S]*)$/;
-  const match = normalizedContent.match(frontmatterRegex);
-  
-  if (!match) {
-    console.warn('No frontmatter found in content', normalizedContent.substring(0, 100));
-    return { frontmatter: {}, content: normalizedContent };
-  }
-  
-  const frontmatterText = match[1];
-  const bodyContent = match[2];
-  
-  // Simple YAML parser for frontmatter
-  const frontmatter = {};
-  const lines = frontmatterText.split('\n');
-  let currentKey = null;
-  let multilineValue = [];
-  let inMultiline = false;
-  
-  for (let i = 0; i < lines.length; i++) {
-    const line = lines[i];
-    
-    if (line.trim().startsWith('#')) continue; // Skip comments
-    
-    // Check for multiline string continuation (indented lines)
-    if (inMultiline && (line.startsWith('  ') || line.startsWith('\t'))) {
-      multilineValue.push(line.trim());
-      continue;
-    } else if (inMultiline) {
-      // End of multiline value
-      frontmatter[currentKey] = multilineValue.join(' ').trim();
-      multilineValue = [];
-      inMultiline = false;
-      currentKey = null;
-    }
-    
-    const colonIndex = line.indexOf(':');
-    if (colonIndex > 0) {
-      const key = line.substring(0, colonIndex).trim();
-      let value = line.substring(colonIndex + 1).trim();
-      
-      // Handle multiline strings (>- or >)
-      if (value === '>-' || value === '>') {
-        currentKey = key;
-        inMultiline = true;
-        multilineValue = [];
-        continue;
-      }
-      
-      // Parse value types
-      if (value === 'true') value = true;
-      else if (value === 'false') value = false;
-      else if (!isNaN(value) && value !== '') value = Number(value);
-      
-      frontmatter[key] = value;
-    }
-  }
-  
-  // Handle last multiline value if exists
-  if (inMultiline && multilineValue.length > 0) {
-    frontmatter[currentKey] = multilineValue.join(' ').trim();
-  }
-  
-  return { frontmatter, content: bodyContent };
-}
 
 /**
  * Convert MDX content to HTML for display
@@ -226,63 +152,45 @@ function mdxToPlainText(mdxContent) {
 }
 
 /**
- * Load all articles from the manifest
+ * Load all articles from the pre-generated JSON data
  */
 export async function loadArticlesFromMDX() {
   try {
-    // Load the manifest file
-    const manifestResponse = await fetch('/content/article-manifest.json');
-    if (!manifestResponse.ok) {
-      console.warn('Article manifest not found. Run "npm run generate-manifest" to create it.');
+    // Load the articles data file (generated at build time)
+    const response = await fetch('/content/articles-data.json');
+    if (!response.ok) {
+      console.warn('Articles data not found. Run "npm run generate-manifest" to create it.');
       return [];
     }
     
-    const manifest = await manifestResponse.json();
-    const articlePaths = manifest.articles || [];
+    const data = await response.json();
+    const articlesData = data.articles || [];
     
-    // Fetch all article files
-    const articlePromises = articlePaths.map(async (relativePath) => {
-      try {
-        const response = await fetch(`/content/articles/${relativePath}`);
-        if (!response.ok) {
-          console.warn(`Failed to fetch ${relativePath}: ${response.status}`);
-          return null;
-        }
-        
-        const mdxContent = await response.text();
-        console.log(`Fetched ${relativePath}, length: ${mdxContent.length}, starts with:`, mdxContent.substring(0, 50));
-        
-        const { frontmatter, content } = parseMDX(mdxContent);
-        
-        console.log('Parsed article:', relativePath, frontmatter);
-        
-        // Convert to app article format
-        return {
-          id: `mdx-${relativePath.replace(/\//g, '-').replace('.mdx', '')}`,
-          title: frontmatter.title || 'Untitled',
-          summary: frontmatter.summary || '',
-          author: frontmatter.author || 'Anonymous',
-          timestamp: frontmatter.date ? new Date(frontmatter.date) : new Date(),
-          image: frontmatter.image || null,
-          category: frontmatter.category || 'General',
-          readTime: frontmatter.readTime || 5,
-          isBreaking: frontmatter.isBreaking || false,
-          content: mdxToHTML(content), // Convert MDX to HTML for display
-          searchContent: mdxToPlainText(content), // Plain text for search
-          rawContent: content, // Keep original MDX
-          source: 'mdx',
-        };
-      } catch (error) {
-        console.error(`Error loading article ${relativePath}:`, error);
-        return null;
-      }
+    // Convert to app article format
+    const articles = articlesData.map((articleData) => {
+      const { frontmatter, content, path: relativePath } = articleData;
+      
+      return {
+        id: `mdx-${relativePath.replace(/\//g, '-').replace('.mdx', '')}`,
+        title: frontmatter.title || 'Untitled',
+        summary: frontmatter.summary || '',
+        author: frontmatter.author || 'Anonymous',
+        timestamp: frontmatter.date ? new Date(frontmatter.date) : new Date(),
+        image: frontmatter.image || null,
+        category: frontmatter.category || 'General',
+        readTime: frontmatter.readTime || 5,
+        isBreaking: frontmatter.isBreaking || false,
+        content: mdxToHTML(content), // Convert MDX to HTML for display
+        searchContent: mdxToPlainText(content), // Plain text for search
+        rawContent: content, // Keep original MDX
+        source: 'mdx',
+      };
     });
     
-    const articles = await Promise.all(articlePromises);
-    return articles.filter(article => article !== null);
+    return articles;
     
   } catch (error) {
-    console.error('Error loading articles from MDX:', error);
+    console.error('Error loading articles from JSON:', error);
     return [];
   }
 }
