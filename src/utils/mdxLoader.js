@@ -180,6 +180,7 @@ export async function loadArticlesFromMDX() {
         category: frontmatter.category || 'General',
         readTime: frontmatter.readTime || 5,
         isBreaking: frontmatter.isBreaking || false,
+        canvaEmbed: frontmatter.canvaEmbed || null,
         content: mdxToHTML(content), // Convert MDX to HTML for display
         searchContent: mdxToPlainText(content), // Plain text for search
         rawContent: content, // Keep original MDX
