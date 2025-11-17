@@ -216,10 +216,17 @@ After creating articles locally, they need to be published to your live website:
 2. Push the changes to GitHub
 3. Deploy to GitHub Pages
 
-**OR if you're comfortable with basic Git commands:**
+**OR if you're comfortable with basic commands:**
 
+**One-Command Publish (Easiest):**
 ```bash
-# 1. Save your changes
+# This single command does everything: saves, commits, pushes, and deploys
+npm run publish
+```
+
+**Step-by-Step (If you prefer to see each step):**
+```bash
+# 1. Save your changes to Git
 git add public/content/articles/
 git add public/images/
 
@@ -375,7 +382,7 @@ Let's walk through creating a sample article step-by-step:
 | **Edit article** | Admin panel → Click article title → Make changes → Save |
 | **Upload image** | In article → Featured Image field → Upload → Select file |
 | **Delete article** | Open article → Actions menu → Delete → Confirm |
-| **Publish to live site** | Save changes → Git commit → Git push → Deploy |
+| **Publish to live site** | Run `npm run publish` in terminal |
 | **Preview article** | Look at right side of editor while creating/editing |
 
 ---

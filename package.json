@@ -5,11 +5,12 @@
   "type": "module",
   "scripts": {
     "dev": "tinacms dev -c \"vite\"",
-    "build": "tinacms build && vite build",
+    "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "predeploy": "npm run build",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "publish": "git add public/content/articles/ public/images/ && git commit -m \"Added new articles\" && git push origin master && npm run deploy"
   },
   "dependencies": {
     "prop-types": "^15.8.1",
