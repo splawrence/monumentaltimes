@@ -8,6 +8,213 @@ TinaCMS is your blog's **content management system** - think of it as a simple e
 
 ---
 
+## Required Tools & Installation (Mac Users)
+
+Before you can use TinaCMS to manage articles, you need to install a few tools on your Mac. Don't worry - this is a one-time setup!
+
+### What You Need
+
+1. **Node.js & npm** - The runtime environment that powers the blog
+2. **Git** - Version control system to save and publish your work
+3. **A Code Editor** (Optional but helpful) - VS Code is recommended
+4. **A Web Browser** - You probably already have this (Chrome, Firefox, Safari, or Edge)
+
+### Automated Installation (Recommended) ⚡
+
+**The easiest way:** Run our automated setup script that installs everything for you!
+
+**Steps:**
+1. Open **Terminal** (press `Cmd+Space`, type "Terminal", press Enter)
+2. Copy and paste this command, then press Enter:
+   ```bash
+   curl -fsSL https://raw.githubusercontent.com/splawrence/monumentaltimes/master/setup-mac.sh | bash
+   ```
+3. Follow the on-screen prompts
+4. Enter your Mac password when asked
+5. Answer "yes" when asked if you want to install VS Code (recommended)
+6. Answer "yes" when asked if you want to clone the project
+
+**That's it!** The script will install everything and set up the project automatically.
+
+**What the script does:**
+- ✅ Installs Homebrew (if not already installed)
+- ✅ Installs Node.js & npm
+- ✅ Installs Git and configures it
+- ✅ Optionally installs VS Code
+- ✅ Clones the project repository
+- ✅ Installs all project dependencies
+- ✅ Verifies everything is working
+
+**Alternative:** If you prefer to run the script from the downloaded project:
+```bash
+cd ~/Documents/monumentaltimes
+chmod +x setup-mac.sh
+./setup-mac.sh
+```
+
+---
+
+### Manual Installation (If You Prefer Step-by-Step)
+
+#### 1. Install Homebrew (Package Manager)
+
+Homebrew makes installing other tools easy. It's like an App Store for developer tools.
+
+**Steps:**
+1. Open **Terminal** (press `Cmd+Space`, type "Terminal", press Enter)
+2. Copy and paste this command, then press Enter:
+   ```bash
+   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+   ```
+3. Follow the on-screen prompts (you may need to enter your Mac password)
+4. Wait for installation to complete (this may take a few minutes)
+
+**Verify it worked:**
+```bash
+brew --version
+```
+You should see something like `Homebrew 4.x.x`
+
+---
+
+#### 2. Install Node.js & npm
+
+Node.js runs the development server, and npm manages the blog's dependencies.
+
+**Steps:**
+1. In Terminal, run:
+   ```bash
+   brew install node
+   ```
+2. Wait for installation to complete
+
+**Verify it worked:**
+```bash
+node --version
+npm --version
+```
+You should see version numbers like `v20.x.x` and `10.x.x`
+
+---
+
+#### 3. Install Git
+
+Git tracks changes to your articles and helps publish them to the live website.
+
+**Steps:**
+1. In Terminal, run:
+   ```bash
+   brew install git
+   ```
+2. Wait for installation to complete
+
+3. Configure Git with your name and email:
+   ```bash
+   git config --global user.name "tikvah02"
+   git config --global user.email "tikvah2002@gmail.com"
+   ```
+   (Use the email associated with your GitHub account)
+
+**Verify it worked:**
+```bash
+git --version
+```
+You should see something like `git version 2.x.x`
+
+---
+
+#### 4. Install VS Code (Optional but Recommended)
+
+VS Code is a free code editor that makes it easier to manage files if needed.
+
+**Steps:**
+1. Visit [https://code.visualstudio.com/](https://code.visualstudio.com/)
+2. Click **"Download for Mac"**
+3. Open the downloaded file
+4. Drag **Visual Studio Code** to your **Applications** folder
+5. Open VS Code from Applications
+
+**OR install via Homebrew:**
+```bash
+brew install --cask visual-studio-code
+```
+
+---
+
+### One-Time Project Setup
+
+After installing the tools, you need to get the blog project on your computer:
+
+**Steps:**
+1. Open Terminal
+2. Navigate to where you want to store the project (e.g., your Documents folder):
+   ```bash
+   cd ~/Documents
+   ```
+3. Clone the blog repository (replace with your actual repository URL):
+   ```bash
+   git clone https://github.com/yourusername/monumentaltimes.git
+   ```
+4. Navigate into the project folder:
+   ```bash
+   cd monumentaltimes
+   ```
+5. Install the project dependencies:
+   ```bash
+   npm install
+   ```
+   This will take a few minutes the first time.
+
+**That's it!** You're now ready to run the blog and create articles.
+
+---
+
+### Quick Setup Verification
+
+Run these commands to make sure everything is installed correctly:
+
+```bash
+# Check all tools are installed
+node --version    # Should show v20.x.x or higher
+npm --version     # Should show 10.x.x or higher
+git --version     # Should show 2.x.x or higher
+brew --version    # Should show 4.x.x or higher
+
+# Navigate to your project (adjust path as needed)
+cd ~/Documents/monumentaltimes
+
+# Start the development server
+npm run dev
+```
+
+If you see "Local: http://localhost:5173/", everything is working! 🎉
+
+Press `Ctrl+C` to stop the server when you're done.
+
+---
+
+### Troubleshooting Installation
+
+**"Command not found" errors:**
+- Make sure you completed the Homebrew installation
+- Try closing and reopening Terminal
+- Run `brew doctor` to check for issues
+
+**"Permission denied" errors:**
+- Don't use `sudo` with Homebrew or npm
+- Check file permissions: `ls -la ~/Documents/monumentaltimes`
+
+**npm install fails:**
+- Delete `node_modules` folder and `package-lock.json`
+- Run `npm install` again
+- Make sure you have a stable internet connection
+
+**Still having issues?**
+- Contact your technical team for help
+- Check the project's GitHub repository for specific setup instructions
+
+---
+
 ## Getting Started
 
 ### Step 1: Open the Editor
