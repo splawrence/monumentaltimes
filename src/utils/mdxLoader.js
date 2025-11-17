@@ -17,7 +17,7 @@ function parseMDX(content) {
   const match = normalizedContent.match(frontmatterRegex);
   
   if (!match) {
-    console.warn('No frontmatter found in content');
+    console.warn('No frontmatter found in content', normalizedContent.substring(0, 100));
     return { frontmatter: {}, content: normalizedContent };
   }
   
@@ -244,9 +244,14 @@ export async function loadArticlesFromMDX() {
     const articlePromises = articlePaths.map(async (relativePath) => {
       try {
         const response = await fetch(`/content/articles/${relativePath}`);
-        if (!response.ok) return null;
+        if (!response.ok) {
+          console.warn(`Failed to fetch ${relativePath}: ${response.status}`);
+          return null;
+        }
         
         const mdxContent = await response.text();
+        console.log(`Fetched ${relativePath}, length: ${mdxContent.length}, starts with:`, mdxContent.substring(0, 50));
+        
         const { frontmatter, content } = parseMDX(mdxContent);
         
         console.log('Parsed article:', relativePath, frontmatter);
