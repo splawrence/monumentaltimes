@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import './Header.css';
 import mtLogo from '../assets/mt-logo.png';
 
-const Header = ({ onSearch }) => {
+const Header = ({ onSearch, onCategoryClick, onPastIssuesClick }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [isSearchOpen, setIsSearchOpen] = useState(window.innerWidth > 768);
@@ -19,8 +19,20 @@ const Header = ({ onSearch }) => {
     }
   };
 
-  const handleMenuItemClick = () => {
+  const handleCategoryClick = (category) => (e) => {
+    e.preventDefault();
     setIsMenuOpen(false);
+    if (onCategoryClick) {
+      onCategoryClick(category);
+    }
+  };
+
+  const handlePastIssuesClick = (e) => {
+    e.preventDefault();
+    setIsMenuOpen(false);
+    if (onPastIssuesClick) {
+      onPastIssuesClick();
+    }
   };
 
 
@@ -119,15 +131,16 @@ const Header = ({ onSearch }) => {
       <nav className={`main-nav ${isMenuOpen ? 'nav-open' : ''}`} aria-label="Main Navigation">
         <div className="nav-container">
           <div className={`nav-links${isMenuOpen ? ' nav-links--open' : ''}`}>
-            <a href="#spiritual" className="nav-link" onClick={handleMenuItemClick}>Spiritual/Bible</a>
-            <a href="#opinion" className="nav-link" onClick={handleMenuItemClick}>Opinion/Testimony</a>
-            <a href="#news" className="nav-link" onClick={handleMenuItemClick}>News Flash</a>
-            <a href="#biography" className="nav-link" onClick={handleMenuItemClick}>Biography/History</a>
-            <a href="#recipes" className="nav-link" onClick={handleMenuItemClick}>Recipes</a>
-            <a href="#poetry" className="nav-link" onClick={handleMenuItemClick}>Poetry & Art</a>
-            <a href="#stories" className="nav-link" onClick={handleMenuItemClick}>Stories & Comics</a>
-            <a href="#tech" className="nav-link" onClick={handleMenuItemClick}>Tech & Sports</a>
-            <a href="#reviews" className="nav-link" onClick={handleMenuItemClick}>Reviews</a>
+            <a href="#past-issues" className="nav-link nav-link--highlight" onClick={handlePastIssuesClick}>Past Issues</a>
+            <a href="#spiritual" className="nav-link" onClick={handleCategoryClick('Spiritual/Bible')}>Spiritual/Bible</a>
+            <a href="#opinion" className="nav-link" onClick={handleCategoryClick('Opinion/Testimony')}>Opinion/Testimony</a>
+            <a href="#news" className="nav-link" onClick={handleCategoryClick('News Flash')}>News Flash</a>
+            <a href="#biography" className="nav-link" onClick={handleCategoryClick('Biography/History')}>Biography/History</a>
+            <a href="#recipes" className="nav-link" onClick={handleCategoryClick('Recipes')}>Recipes</a>
+            <a href="#poetry" className="nav-link" onClick={handleCategoryClick('Poetry & Art')}>Poetry & Art</a>
+            <a href="#stories" className="nav-link" onClick={handleCategoryClick('Stories & Comics')}>Stories & Comics</a>
+            <a href="#tech" className="nav-link" onClick={handleCategoryClick('Tech & Sports')}>Tech & Sports</a>
+            <a href="#reviews" className="nav-link" onClick={handleCategoryClick('Reviews')}>Reviews</a>
             {/* About Us and Policies links removed for footer relocation */}
           </div>
         </div>
@@ -137,7 +150,9 @@ const Header = ({ onSearch }) => {
 };
 
 Header.propTypes = {
-  onSearch: PropTypes.func
+  onSearch: PropTypes.func,
+  onCategoryClick: PropTypes.func,
+  onPastIssuesClick: PropTypes.func
 };
 
 export default Header;

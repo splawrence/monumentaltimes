@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import FeaturedArticle from './components/FeaturedArticle';
 import CanvaEmbed from './components/CanvaEmbed';
@@ -8,7 +8,9 @@ import ArticleView from './components/ArticleView';
 import AboutUs from './components/AboutUs';
 import Policies from './components/Policies';
 import SearchResults from './components/SearchResults';
-import { featuredArticle, secondaryArticles, sidebarArticles, sampleArticles } from './data/sampleData';
+import CategoryPage from './components/CategoryPage';
+import PastIssues from './components/PastIssues';
+import client from '../tina/__generated__/client';
 import './App.css';
 
 function App() {
@@ -16,8 +18,69 @@ function App() {
   const [showAbout, setShowAbout] = useState(false);
   const [showPolicies, setShowPolicies] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [showPastIssues, setShowPastIssues] = useState(false);
+  const [selectedCategory, setSelectedCategory] = useState(null);
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState([]);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  // Load articles from TinaCMS
+  useEffect(() => {
+    const loadArticles = async () => {
+      try {
+        const response = await client.queries.articlesConnection();
+        const edges = response.data?.articlesConnection?.edges || [];
+        
+        const loadedArticles = edges.map((edge) => {
+          const node = edge.node;
+          
+          // Convert TinaCMS rich-text body to plain text
+          let contentText = '';
+          if (node.body && node.body.children) {
+            contentText = node.body.children
+              .map((child) => {
+                if (child.type === 'p' && child.children) {
+                  return child.children.map(c => c.text || '').join('');
+                }
+                if (child.type === 'h1' || child.type === 'h2' || child.type === 'h3') {
+                  return child.children?.map(c => c.text || '').join('') || '';
+                }
+                return child.text || '';
+              })
+              .filter(text => text.trim())
+              .join('\n\n');
+          }
+          
+          return {
+            id: node._sys.filename,
+            title: node.title || '',
+            summary: node.summary || '',
+            author: node.author || 'Anonymous',
+            timestamp: node.date ? new Date(node.date) : new Date(),
+            image: node.image || null,
+            category: node.category || 'General',
+            readTime: node.readTime || 5,
+            isBreaking: node.isBreaking || false,
+            content: contentText,
+            richBody: node.body, // Keep rich text for future use
+            canvaEmbed: node.canvaEmbed || null,
+          };
+        });
+        
+        // Sort by date, newest first
+        loadedArticles.sort((a, b) => b.timestamp - a.timestamp);
+        
+        setArticles(loadedArticles);
+      } catch (error) {
+        console.error('Error loading articles:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    loadArticles();
+  }, []);
 
   const handleArticleClick = (article) => {
     setSelectedArticle(article);
@@ -50,8 +113,34 @@ function App() {
     setShowPolicies(false);
   };
 
-    const handleSearch = (query) => {
-    const results = sampleArticles.filter(article => 
+  const handleCategoryClick = (category) => {
+    setSelectedCategory(category);
+  };
+
+  const handleCloseCategory = () => {
+    setSelectedCategory(null);
+  };
+
+  const handleCategoryArticleClick = (article) => {
+    setSelectedCategory(null);
+    setSelectedArticle(article);
+  };
+
+  const handlePastIssuesClick = () => {
+    setShowPastIssues(true);
+  };
+
+  const handleClosePastIssues = () => {
+    setShowPastIssues(false);
+  };
+
+  const handlePastIssueClick = (article) => {
+    setShowPastIssues(false);
+    setSelectedArticle(article);
+  };
+
+  const handleSearch = (query) => {
+    const results = articles.filter(article => 
       article.title.toLowerCase().includes(query.toLowerCase()) ||
       article.summary.toLowerCase().includes(query.toLowerCase()) ||
       article.category.toLowerCase().includes(query.toLowerCase()) ||
@@ -70,50 +159,102 @@ function App() {
     setSearchResults([]);
   };
 
+  // Get featured article (most recent)
+  const featuredArticle = articles[0];
+  
+  // Get the most recent article with a Canva embed
+  const latestCanvaArticle = articles.find(article => article.canvaEmbed);
+  
+  // Get articles for grids
+  const mainArticles = articles.slice(1, 7);
+  const sidebarArticles = articles.slice(7, 10);
+
   return (
     <div className="app">
-      <Header onAboutClick={handleAboutClick} onPoliciesClick={handlePoliciesClick} onSearch={handleSearch} />
+      <Header onAboutClick={handleAboutClick} onPoliciesClick={handlePoliciesClick} onSearch={handleSearch} onCategoryClick={handleCategoryClick} onPastIssuesClick={handlePastIssuesClick} />
       
       <main className="main-content">
-        {/* Featured Article */}
-        <FeaturedArticle 
-          article={featuredArticle} 
-          onClick={handleArticleClick}
-        />
-        
-        {/* Canva Embed - Prominent Feature */}
-        <CanvaEmbed />
-        
-        <hr className="section-divider" />
-        
-        {/* Main Content Layout */}
-        <div className="homepage-layout">
-          <div className="content-area">
-            {/* Secondary Articles */}
-            <ArticleGrid 
-              articles={secondaryArticles} 
-              columns={3} 
-              title="Latest News" 
-              onArticleClick={handleArticleClick}
-            />
-            
-            <hr className="section-divider--light" />
-            
-            {/* More Articles in 2-column layout */}
-            <ArticleGrid 
-              articles={secondaryArticles.slice(3)} 
-              columns={2} 
-              title="More Stories" 
-              onArticleClick={handleArticleClick}
-            />
+        {loading ? (
+          <div style={{ textAlign: 'center', padding: '40px' }}>
+            <p>Loading articles...</p>
           </div>
-          
-          {/* Sidebar */}
-          <Sidebar 
-            articles={sidebarArticles} 
-            onArticleClick={handleArticleClick}
-          />
-        </div>
+        ) : articles.length === 0 ? (
+          <div style={{ textAlign: 'center', padding: '40px' }}>
+            <h2>No Articles Yet</h2>
+            <p>Create your first article in the TinaCMS admin panel at <a href="/admin">/admin</a></p>
+          </div>
+        ) : (
+          <>
+            {/* Featured Article */}
+            {featuredArticle && (
+              <FeaturedArticle 
+                article={featuredArticle} 
+                onClick={handleArticleClick}
+                onCategoryClick={handleCategoryClick}
+              />
+            )}
+            
+            {/* Show latest Canva embed if available */}
+            {latestCanvaArticle && latestCanvaArticle.canvaEmbed && (
+              <div 
+                className="canva-embed-container canva-embed-container--clickable"
+                onClick={() => handleArticleClick(latestCanvaArticle)}
+                style={{ cursor: 'pointer' }}
+              >
+                <div className="canva-embed-wrapper">
+                  <iframe
+                    loading="lazy"
+                    style={{
+                      position: 'absolute',
+                      width: '70%',
+                      height: '1156px',
+                      top: 0,
+                      left: '15%',
+                      border: 'none',
+                      padding: 0,
+                      margin: 0,
+                      pointerEvents: 'none'
+                    }}
+                    src={latestCanvaArticle.canvaEmbed}
+                    allowFullScreen="allowfullscreen"
+                    allow="fullscreen"
+                    title="Latest Canva Design"
+                  />
+                </div>
+                <div className="canva-embed-overlay">
+                  <span className="canva-embed-overlay__text">Click to view full article</span>
+                </div>
+              </div>
+            )}
+            
+            <hr className="section-divider" />
+            
+            {/* Main Content Layout */}
+            <div className="homepage-layout">
+              <div className="content-area">
+                {/* Main Articles */}
+                {mainArticles.length > 0 && (
+                  <ArticleGrid 
+                    articles={mainArticles} 
+                    columns={3} 
+                    title="Latest Articles" 
+                    onArticleClick={handleArticleClick}
+                    onCategoryClick={handleCategoryClick}
+                  />
+                )}
+              </div>
+              
+              {/* Sidebar */}
+              {sidebarArticles.length > 0 && (
+                <Sidebar 
+                  articles={sidebarArticles} 
+                  onArticleClick={handleArticleClick}
+                  onCategoryClick={handleCategoryClick}
+                />
+              )}
+            </div>
+          </>
+        )}
       </main>
 
       {/* Article View Modal */}
@@ -141,6 +282,25 @@ function App() {
           searchResults={searchResults}
           onArticleClick={handleSearchResultClick}
           onClose={handleCloseSearch}
+        />
+      )}
+
+      {/* Category Page Modal */}
+      {selectedCategory && (
+        <CategoryPage
+          category={selectedCategory}
+          articles={articles}
+          onArticleClick={handleCategoryArticleClick}
+          onClose={handleCloseCategory}
+        />
+      )}
+
+      {/* Past Issues Modal */}
+      {showPastIssues && (
+        <PastIssues
+          articles={articles}
+          onArticleClick={handlePastIssueClick}
+          onClose={handleClosePastIssues}
         />
       )}
 
@@ -187,7 +347,7 @@ function App() {
         </div>
         
         <div className="footer-bottom">
-          <p>&copy; 2025 Monumental Times. All rights reserved. | October 18th, 2025 Issue</p>
+          <p>&copy; 2025 Monumental Times. All rights reserved.</p>
         </div>
       </footer>
     </div>

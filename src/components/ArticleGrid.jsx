@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ArticleCard from './ArticleCard';
 import './ArticleGrid.css';
 
-const ArticleGrid = ({ articles, columns = 3, title, onArticleClick }) => {
+const ArticleGrid = ({ articles, columns = 3, title, onArticleClick, onCategoryClick }) => {
   return (
     <section className="article-grid">
       {title && <h2 className="article-grid__title">{title}</h2>}
@@ -14,6 +14,7 @@ const ArticleGrid = ({ articles, columns = 3, title, onArticleClick }) => {
               article={article} 
               size="medium" 
               onClick={onArticleClick}
+              onCategoryClick={onCategoryClick}
             />
           </div>
         ))}
@@ -26,7 +27,8 @@ ArticleGrid.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object).isRequired,
   columns: PropTypes.number,
   title: PropTypes.string,
-  onArticleClick: PropTypes.func
+  onArticleClick: PropTypes.func,
+  onCategoryClick: PropTypes.func
 };
 
 export default ArticleGrid;

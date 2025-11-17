@@ -98,6 +98,21 @@ table {
   background: #a1a1a1;
 }
 
+/* Category Badge Hover Effect */
+.category-badge--clickable {
+  transition: background-color 0.2s, transform 0.1s;
+}
+
+.category-badge--clickable:hover {
+  background-color: #000 !important;
+  color: #fff !important;
+  transform: translateY(-1px);
+}
+
+.category-badge--clickable:active {
+  transform: translateY(0);
+}
+
 /* Print Styles */
 @media print {
   * {

@@ -10,7 +10,8 @@ const ArticleView = ({ article, onClose }) => {
     timestamp,
     image,
     category,
-    readTime
+    readTime,
+    canvaEmbed
   } = article;
 
   const formatTimestamp = (timestamp) => {
@@ -45,19 +46,34 @@ const ArticleView = ({ article, onClose }) => {
           </div>
         )}
 
+        {canvaEmbed && (
+          <div className="article-view__canva-embed">
+            <iframe
+              loading="lazy"
+              src={canvaEmbed}
+              allowFullScreen=""
+              allow="fullscreen"
+              title="Canva Design"
+              style={{
+                position: 'absolute',
+                width: '100%',
+                height: '1138px',
+                top: 0,
+                left: 0,
+                border: 'none',
+                padding: 0,
+                margin: 0
+              }}
+            />
+          </div>
+        )}
+
         <div className="article-view__content">
-          {content ? (
-            content.split('\n\n').map((paragraph, index) => (
-              <p key={index} className="article-view__paragraph">
-                {paragraph}
-              </p>
-            ))
-          ) : (
-            <p className="article-view__paragraph">
-              This is the full content of the article. In a real application, 
-              this would contain the complete article text with proper formatting.
+          {content?.split('\n\n').map((paragraph) => (
+            <p key={paragraph} className="article-view__paragraph">
+              {paragraph}
             </p>
-          )}
+          ))}
         </div>
       </article>
     </div>
@@ -72,7 +88,8 @@ ArticleView.propTypes = {
     timestamp: PropTypes.instanceOf(Date).isRequired,
     image: PropTypes.string,
     category: PropTypes.string.isRequired,
-    readTime: PropTypes.number.isRequired
+    readTime: PropTypes.number.isRequired,
+    canvaEmbed: PropTypes.string
   }).isRequired,
   onClose: PropTypes.func.isRequired
 };

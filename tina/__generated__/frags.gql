@@ -1,0 +1,13 @@
+fragment ArticlesParts on Articles {
+  __typename
+  title
+  summary
+  author
+  date
+  category
+  readTime
+  image
+  isBreaking
+  canvaEmbed
+  body
+}

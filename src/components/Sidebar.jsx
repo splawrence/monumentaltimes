@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import ArticleCard from './ArticleCard';
 import './Sidebar.css';
 
-const Sidebar = ({ articles, title = "More Stories", onArticleClick }) => {
+const Sidebar = ({ articles, title = "More Stories", onArticleClick, onCategoryClick }) => {
   return (
     <aside className="sidebar">
       <h3 className="sidebar__title">{title}</h3>
@@ -14,6 +14,7 @@ const Sidebar = ({ articles, title = "More Stories", onArticleClick }) => {
               article={article} 
               size="small" 
               onClick={onArticleClick}
+              onCategoryClick={onCategoryClick}
             />
           </div>
         ))}
@@ -59,7 +60,8 @@ const Sidebar = ({ articles, title = "More Stories", onArticleClick }) => {
 Sidebar.propTypes = {
   articles: PropTypes.arrayOf(PropTypes.object).isRequired,
   title: PropTypes.string,
-  onArticleClick: PropTypes.func
+  onArticleClick: PropTypes.func,
+  onCategoryClick: PropTypes.func
 };
 
 export default Sidebar;

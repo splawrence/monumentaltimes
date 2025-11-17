@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './FeaturedArticle.css';
 
-const FeaturedArticle = ({ article, onClick }) => {
+const FeaturedArticle = ({ article, onClick, onCategoryClick }) => {
   const {
-    id,
     title,
     summary,
     author,
@@ -33,6 +32,13 @@ const FeaturedArticle = ({ article, onClick }) => {
     }
   };
 
+  const handleCategoryClick = (e) => {
+    e.stopPropagation();
+    if (onCategoryClick && category) {
+      onCategoryClick(category);
+    }
+  };
+
   return (
     <article 
       className="featured-article"
@@ -53,13 +59,19 @@ const FeaturedArticle = ({ article, onClick }) => {
               <span className="breaking-badge breaking-badge--large">Breaking News</span>
             )}
             {category && (
-              <span className="category-badge category-badge--large">{category}</span>
+              <span 
+                className="category-badge category-badge--large category-badge--clickable" 
+                onClick={handleCategoryClick}
+                style={{ cursor: 'pointer' }}
+              >
+                {category}
+              </span>
             )}
           </div>
         )}
         
         <h1 className="featured-article__title">
-          <a href={`/article/${id}`}>{title}</a>
+          {title}
         </h1>
         
         <p className="featured-article__summary">{summary}</p>
@@ -79,7 +91,6 @@ const FeaturedArticle = ({ article, onClick }) => {
 
 FeaturedArticle.propTypes = {
   article: PropTypes.shape({
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
     title: PropTypes.string.isRequired,
     summary: PropTypes.string.isRequired,
     author: PropTypes.string,
@@ -88,7 +99,8 @@ FeaturedArticle.propTypes = {
     category: PropTypes.string,
     isBreaking: PropTypes.bool
   }).isRequired,
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  onCategoryClick: PropTypes.func
 };
 
 export default FeaturedArticle;

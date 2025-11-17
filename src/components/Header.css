@@ -252,6 +252,22 @@
   color: #326891;
 }
 
+.nav-link--highlight {
+  color: #326891;
+  font-weight: 700;
+  position: relative;
+}
+
+.nav-link--highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 4px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: #326891;
+}
+
 .nav-link--button {
   background: none;
   border: none;

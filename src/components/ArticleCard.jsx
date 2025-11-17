@@ -2,9 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './ArticleCard.css';
 
-const ArticleCard = ({ article, size = 'medium', onClick }) => {
+const ArticleCard = ({ article, size = 'medium', onClick, onCategoryClick }) => {
   const {
-    id,
     title,
     summary,
     author,
@@ -32,6 +31,13 @@ const ArticleCard = ({ article, size = 'medium', onClick }) => {
     }
   };
 
+  const handleCategoryClick = (e) => {
+    e.stopPropagation();
+    if (onCategoryClick && category) {
+      onCategoryClick(category);
+    }
+  };
+
   return (
     <article 
       className={`article-card article-card--${size}`}
@@ -51,13 +57,19 @@ const ArticleCard = ({ article, size = 'medium', onClick }) => {
               <span className="breaking-badge">Breaking</span>
             )}
             {category && (
-              <span className="category-badge">{category}</span>
+              <span 
+                className="category-badge category-badge--clickable" 
+                onClick={handleCategoryClick}
+                style={{ cursor: 'pointer' }}
+              >
+                {category}
+              </span>
             )}
           </div>
         )}
         
         <h3 className="article-card__title">
-          <a href={`/article/${id}`}>{title}</a>
+          {title}
         </h3>
         
         {summary && size !== 'small' && (
@@ -93,7 +105,8 @@ ArticleCard.propTypes = {
     isBreaking: PropTypes.bool
   }).isRequired,
   size: PropTypes.oneOf(['small', 'medium', 'large']),
-  onClick: PropTypes.func
+  onClick: PropTypes.func,
+  onCategoryClick: PropTypes.func
 };
 
 export default ArticleCard;
