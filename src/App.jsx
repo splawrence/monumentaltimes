@@ -10,7 +10,7 @@ import Policies from './components/Policies';
 import SearchResults from './components/SearchResults';
 import CategoryPage from './components/CategoryPage';
 import PastIssues from './components/PastIssues';
-import client from '../tina/__generated__/client';
+import { loadArticlesFromMDX } from './utils/mdxLoader';
 import './App.css';
 
 function App() {
@@ -25,55 +25,20 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Load articles from TinaCMS
+  // Load articles from MDX files in public/content/articles/
   useEffect(() => {
     const loadArticles = async () => {
       try {
-        const response = await client.queries.articlesConnection();
-        const edges = response.data?.articlesConnection?.edges || [];
+        // Load articles from MDX files
+        const mdxArticles = await loadArticlesFromMDX();
         
-        const loadedArticles = edges.map((edge) => {
-          const node = edge.node;
-          
-          // Convert TinaCMS rich-text body to plain text
-          let contentText = '';
-          if (node.body && node.body.children) {
-            contentText = node.body.children
-              .map((child) => {
-                if (child.type === 'p' && child.children) {
-                  return child.children.map(c => c.text || '').join('');
-                }
-                if (child.type === 'h1' || child.type === 'h2' || child.type === 'h3') {
-                  return child.children?.map(c => c.text || '').join('') || '';
-                }
-                return child.text || '';
-              })
-              .filter(text => text.trim())
-              .join('\n\n');
-          }
-          
-          return {
-            id: node._sys.filename,
-            title: node.title || '',
-            summary: node.summary || '',
-            author: node.author || 'Anonymous',
-            timestamp: node.date ? new Date(node.date) : new Date(),
-            image: node.image || null,
-            category: node.category || 'General',
-            readTime: node.readTime || 5,
-            isBreaking: node.isBreaking || false,
-            content: contentText,
-            richBody: node.body, // Keep rich text for future use
-            canvaEmbed: node.canvaEmbed || null,
-          };
-        });
-        
+        console.log(`Loaded ${mdxArticles.length} articles from MDX files`);
         // Sort by date, newest first
-        loadedArticles.sort((a, b) => b.timestamp - a.timestamp);
-        
-        setArticles(loadedArticles);
+        mdxArticles.sort((a, b) => b.timestamp - a.timestamp);
+        setArticles(mdxArticles);
       } catch (error) {
         console.error('Error loading articles:', error);
+        setArticles([]);
       } finally {
         setLoading(false);
       }
@@ -145,6 +110,7 @@ function App() {
       article.summary.toLowerCase().includes(query.toLowerCase()) ||
       article.category.toLowerCase().includes(query.toLowerCase()) ||
       article.author.toLowerCase().includes(query.toLowerCase()) ||
+      article.searchContent?.toLowerCase().includes(query.toLowerCase()) ||
       article.content?.toLowerCase().includes(query.toLowerCase())
     );
     

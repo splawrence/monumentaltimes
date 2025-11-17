@@ -8,9 +8,10 @@
     "build": "vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "predeploy": "npm run build",
+    "generate-manifest": "node scripts/generate-article-manifest.js",
+    "predeploy": "npm run generate-manifest && npm run build",
     "deploy": "gh-pages -d dist",
-    "publish": "git add public/content/articles/ public/images/ && git commit -m \"Added new articles\" && git push origin master && npm run deploy"
+    "publish": "git add public/content/articles/ public/images/ && git commit -m \"Added new articles\" && npm run deploy"
   },
   "dependencies": {
     "prop-types": "^15.8.1",

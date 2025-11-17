@@ -69,11 +69,8 @@ const ArticleView = ({ article, onClose }) => {
         )}
 
         <div className="article-view__content">
-          {content?.split('\n\n').map((paragraph) => (
-            <p key={paragraph} className="article-view__paragraph">
-              {paragraph}
-            </p>
-          ))}
+          {/* Render HTML content from MDX */}
+          <div dangerouslySetInnerHTML={{ __html: content }} />
         </div>
       </article>
     </div>
