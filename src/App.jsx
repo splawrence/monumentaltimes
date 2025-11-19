@@ -170,17 +170,7 @@ function App() {
                 <div className="canva-embed-wrapper">
                   <iframe
                     loading="lazy"
-                    style={{
-                      position: 'absolute',
-                      width: '70%',
-                      height: '1156px',
-                      top: 0,
-                      left: '15%',
-                      border: 'none',
-                      padding: 0,
-                      margin: 0,
-                      pointerEvents: 'none'
-                    }}
+                    className="canva-embed-iframe"
                     src={latestCanvaArticle.canvaEmbed}
                     allowFullScreen="allowfullscreen"
                     allow="fullscreen"

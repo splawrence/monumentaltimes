@@ -50,20 +50,11 @@ const ArticleView = ({ article, onClose }) => {
           <div className="article-view__canva-embed">
             <iframe
               loading="lazy"
+              className="canva-embed-iframe"
               src={canvaEmbed}
               allowFullScreen=""
               allow="fullscreen"
               title="Canva Design"
-              style={{
-                position: 'absolute',
-                width: '100%',
-                height: '1138px',
-                top: 0,
-                left: 0,
-                border: 'none',
-                padding: 0,
-                margin: 0
-              }}
             />
           </div>
         )}

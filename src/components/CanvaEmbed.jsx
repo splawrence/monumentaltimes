@@ -7,16 +7,7 @@ const CanvaEmbed = () => {
       <div className="canva-embed-wrapper">
         <iframe
           loading="lazy"
-          style={{
-            position: 'absolute',
-            width: '100%',
-            height: '100%',
-            top: 0,
-            left: 0,
-            border: 'none',
-            padding: 0,
-            margin: 0
-          }}
+          className="canva-embed-iframe"
           src="https://www.canva.com/design/DAGy_fHSwTY/iAJAzEKq5XSYVvNh8-OriA/view?embed"
           allowFullScreen="allowfullscreen"
           allow="fullscreen"
