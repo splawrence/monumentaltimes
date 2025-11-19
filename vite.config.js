@@ -7,8 +7,15 @@ export default defineConfig({
   base: '/',
   server: {
     middlewareMode: false,
+    proxy: {
+      '/api/tina': {
+        target: 'http://localhost:4001',
+        changeOrigin: true,
+      },
+    },
   },
   build: {
     copyPublicDir: true,
+    outDir: 'dist',
   },
 })

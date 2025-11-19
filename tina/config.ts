@@ -2,12 +2,14 @@ import { defineConfig } from "tinacms";
 
 export default defineConfig({
   branch: "master",
-  clientId: process.env.VITE_TINA_CLIENT_ID || "",
-  token: process.env.TINA_TOKEN || "",
+  clientId: process.env.VITE_TINA_CLIENT_ID || null,
+  token: process.env.TINA_TOKEN || null,
   build: {
     publicFolder: "public",
     outputFolder: "admin",
   },
+  // Use local mode when no cloud credentials are provided
+  contentApiUrlOverride: process.env.NODE_ENV === "production" && !process.env.VITE_TINA_CLIENT_ID ? "/api/tina/gql" : undefined,
   media: {
     tina: {
       mediaRoot: "images",
