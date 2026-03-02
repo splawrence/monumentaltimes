@@ -1,6 +1,28 @@
 {
   "articles": [
     {
+      "path": "03.2026/March-2026-Issue.mdx",
+      "frontmatter": {
+        "title": "March 2026 Issue",
+        "date": "2026-03-01T00:00:00.000Z",
+        "summary": "Latest issue for March 2026",
+        "author": "Monumental Times",
+        "category": "News Flash",
+        "readTime": 5,
+        "canvaEmbed": "https://www.canva.com/design/DAG9CTMsdUQ/KicOvksgY2DP8qkh32uQ0A/view?embed"
+      },
+      "content": "# March 2026 Issue\n\nWelcome to the March 2026 issue of Monumental Times.\n"
+    },
+    {
+      "path": "10.2025/October-2025-Issue.mdx",
+      "frontmatter": {
+        "title": "October 2025 Issue",
+        "date": "2025-10-02T00:00:00.000Z",
+        "canvaEmbed": "https://www.canva.com/design/DAGy_fHSwTY/iAJAzEKq5XSYVvNh8-OriA/view?embed"
+      },
+      "content": ""
+    },
+    {
       "path": "10.2025/a-girl-by-the-seaside.mdx",
       "frontmatter": {
         "title": "A Girl by the Seaside",
@@ -99,15 +121,6 @@
       "content": "# Win for WI: Milwaukee Brewers Win Central Division\n\nThe Milwaukee Brewers won the Central Division in the 2025 season, finishing 5 games ahead of their rival, the Chicago Cubs. The team broke several records, including a franchise win streak with 14 wins in August.\n\n## Record-Breaking Performance\n\nTheir exceptional base running contributed extensively to the historic season. The Brewers demonstrated outstanding teamwork and athletic prowess throughout the year, culminating in one of the best seasons in franchise history.\n\n## A Tribute to Bob Ueker\n\nFor many fans and players alike, the phenomenal season serves as a tribute to the legacy of the late Bob Ueker, who passed away in January 2025. Ueker's decades-long association with the Brewers as the beloved voice of the team left an indelible mark on Wisconsin baseball culture.\n\nThe 2025 championship run reminded fans across Wisconsin why they love America's pastime and why the Brewers hold a special place in the hearts of Badger State residents.\n\n***\n\n*Go Brewers!*\n"
     },
     {
-      "path": "10.2025/October-2025-Issue.mdx",
-      "frontmatter": {
-        "title": "October 2025 Issue",
-        "date": "2025-10-02T00:00:00.000Z",
-        "canvaEmbed": "https://www.canva.com/design/DAGy_fHSwTY/iAJAzEKq5XSYVvNh8-OriA/view?embed"
-      },
-      "content": ""
-    },
-    {
       "path": "10.2025/on-prayer-psalm-139.mdx",
       "frontmatter": {
         "title": "On Prayer: Search Me, O God",
@@ -147,7 +160,7 @@
         "image": "/images/shadow-almighty.jpg",
         "isBreaking": false
       },
-      "content": "# Shadow of the Almighty\r\n## The Life & Testament of Jim Elliot\r\n**By Elisabeth Elliot**\r\n\r\nJim Elliot was young, passionate, and on fire for the Lord, taking advantage of every opportunity for the glory of God. Through life's ups and downs, he steadfastly dedicated his 28 years to the work of the Lord before paying the ultimate price for his sacrifice.\r\n\r\n## A Legacy in Words\r\n\r\nElisabeth Elliot, Jim Elliot's wife, masterfully compiled the letters and journal entries from Jim Elliot after his death in 1956, compiling the thoughts, struggles, breakthroughs, and passions of a young man with a driving purpose. When I first picked up this book, I wasn't sure whether to expect the same old run-of-the-mill story I'd heard so many times before. But reading through Jim Elliot's writings impacted me more than I imagined.\r\n\r\n## Lessons from a Life Well-Lived\r\n\r\nJim Elliot wrote especially throughout his years going to school and while preparing for the missionary journey to Ecuador that would eventually take his life. Each lesson he learned in trusting the Lord and leaning on his Savior in every situation was a lesson for me as well, and I was refreshed and renewed in my desire to know the Lord more and keep pressing into my faith.\r\n\r\n## My Recommendation\r\n\r\nI highly recommend reading this book, or listening to it read by Elisabeth Elliot herself. If you allow your heart and mind to be open to the Lord's work, there is no telling how *Shadow of the Almighty* could minister to you as well.\r\n\r\n**Recommended for ages 16 and up.**\r\n\r\n---\r\n\r\n*\"He is no fool who gives what he cannot keep to gain that which he cannot lose.\" — Jim Elliot*\r\n"
+      "content": "# Shadow of the Almighty\n## The Life & Testament of Jim Elliot\n**By Elisabeth Elliot**\n\nJim Elliot was young, passionate, and on fire for the Lord, taking advantage of every opportunity for the glory of God. Through life's ups and downs, he steadfastly dedicated his 28 years to the work of the Lord before paying the ultimate price for his sacrifice.\n\n## A Legacy in Words\n\nElisabeth Elliot, Jim Elliot's wife, masterfully compiled the letters and journal entries from Jim Elliot after his death in 1956, compiling the thoughts, struggles, breakthroughs, and passions of a young man with a driving purpose. When I first picked up this book, I wasn't sure whether to expect the same old run-of-the-mill story I'd heard so many times before. But reading through Jim Elliot's writings impacted me more than I imagined.\n\n## Lessons from a Life Well-Lived\n\nJim Elliot wrote especially throughout his years going to school and while preparing for the missionary journey to Ecuador that would eventually take his life. Each lesson he learned in trusting the Lord and leaning on his Savior in every situation was a lesson for me as well, and I was refreshed and renewed in my desire to know the Lord more and keep pressing into my faith.\n\n## My Recommendation\n\nI highly recommend reading this book, or listening to it read by Elisabeth Elliot herself. If you allow your heart and mind to be open to the Lord's work, there is no telling how *Shadow of the Almighty* could minister to you as well.\n\n**Recommended for ages 16 and up.**\n\n---\n\n*\"He is no fool who gives what he cannot keep to gain that which he cannot lose.\" — Jim Elliot*\n"
     },
     {
       "path": "10.2025/smores-bars-recipe.mdx",
@@ -206,6 +219,6 @@
       "content": "# For Laughs: Wisconsin Humor & Classic Jokes\n\n## Wisconsin Wisdom\n\n**Wanna hear a joke about Wisconsin roads?**\n\nSorry, I'm still working on it.\n\n***\n\n## Classic Clean Humor\n\n**What is the difference between a teacher and a train?**\n\nOne says \"Spit out your gum,\" the other says, \"Choo choo!\"\n\n***\n\n**Why did the can crusher quit his job?**\n\nBecause it was soda pressing.\n\n***\n\n## Did You Know\\...\n\nThe English word \"**run**\" has 645 definitions! I'd like the run down on those!\n\n***\n\n## Word of the Day\n\n**Petrichor**: the word for the nice, earthy smell that comes when it rains after a warm, dry spell.\n\n***\n\n*Remember, laughter is good medicine! (Proverbs 17:22)*\n"
     }
   ],
-  "generatedAt": "2025-11-19T02:13:04.412Z",
-  "count": 15
+  "generatedAt": "2026-03-02T02:51:06.120Z",
+  "count": 16
 }
