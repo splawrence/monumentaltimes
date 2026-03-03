@@ -10,7 +10,7 @@ import Policies from './components/Policies';
 import SearchResults from './components/SearchResults';
 import CategoryPage from './components/CategoryPage';
 import PastIssues from './components/PastIssues';
-import { loadArticlesFromMDX } from './utils/mdxLoader';
+import { fetchArticles as fetchSanityArticles } from './utils/sanityClient';
 import './App.css';
 
 function App() {
@@ -25,17 +25,17 @@ function App() {
   const [articles, setArticles] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  // Load articles from MDX files in public/content/articles/
+  // Load articles from Sanity
   useEffect(() => {
     const loadArticles = async () => {
       try {
-        // Load articles from MDX files
-        const mdxArticles = await loadArticlesFromMDX();
+        const sanityArticles = await fetchSanityArticles();
         
-        console.log(`Loaded ${mdxArticles.length} articles from MDX files`);
+        console.log(`Loaded ${sanityArticles.length} articles from Sanity`);
+        
         // Sort by date, newest first
-        mdxArticles.sort((a, b) => b.timestamp - a.timestamp);
-        setArticles(mdxArticles);
+        sanityArticles.sort((a, b) => b.timestamp - a.timestamp);
+        setArticles(sanityArticles);
       } catch (error) {
         console.error('Error loading articles:', error);
         setArticles([]);

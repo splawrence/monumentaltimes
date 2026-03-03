@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import './AboutUs.css';
-import hopePhoto from '../assets/hopehanson.png';
-import joannaPhoto from '../assets/joannarocke.png';
+import hopePhoto from '../assets/hope-hanson.png';
+import joannaPhoto from '../assets/joanna-rocke.png';
 
 const AboutUs = ({ onClose }) => {
   return (
