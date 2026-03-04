@@ -141,6 +141,7 @@ const Header = ({ onSearch, onCategoryClick, onPastIssuesClick }) => {
             <a href="#stories" className="nav-link" onClick={handleCategoryClick('Stories & Comics')}>Stories & Comics</a>
             <a href="#tech" className="nav-link" onClick={handleCategoryClick('Tech & Sports')}>Tech & Sports</a>
             <a href="#reviews" className="nav-link" onClick={handleCategoryClick('Reviews')}>Reviews</a>
+            <a href="#issues" className="nav-link" onClick={handleCategoryClick('Issues')}>Issues</a>
             {/* About Us and Policies links removed for footer relocation */}
           </div>
         </div>
