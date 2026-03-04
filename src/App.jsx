@@ -147,7 +147,6 @@ function App() {
         ) : articles.length === 0 ? (
           <div style={{ textAlign: 'center', padding: '40px' }}>
             <h2>No Articles Yet</h2>
-            <p>Create your first article in the TinaCMS admin panel at <a href="/admin">/admin</a></p>
           </div>
         ) : (
           <>

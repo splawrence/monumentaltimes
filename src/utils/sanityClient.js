@@ -39,10 +39,11 @@ export async function fetchArticles() {
         image,
         body,
         author,
+        category,
         canvaEmbed
       }
     `)
-    
+
     // Transform Sanity posts to app format
     return posts.map((post) => ({
       id: post._id,
@@ -51,7 +52,7 @@ export async function fetchArticles() {
       author: post.author || 'Monumental Times',
       timestamp: new Date(post.publishedAt),
       image: post.image ? urlFor(post.image).url() : null,
-      category: 'General',
+      category: post.category || 'General',
       readTime: estimateReadTime(post.body),
       isBreaking: false,
       content: portableTextToHTML(post.body),
